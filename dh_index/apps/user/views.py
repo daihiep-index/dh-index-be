@@ -1,3 +1,2 @@
-from django.shortcuts import render
+from dh_index.apps.user.views_container.register import *
 
-# Create your views here.

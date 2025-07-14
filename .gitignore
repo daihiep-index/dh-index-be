@@ -151,7 +151,7 @@ evaluation
 tests/models/*
 dummy
 *.json
-dh_index/.env
+.env
 .env_product
 /env
 /database/postgres
