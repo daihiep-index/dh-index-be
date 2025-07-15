@@ -1,6 +1,5 @@
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
 from django.urls import path, include
-from dh_index.apps.user.routers import register
 
 
 urlpatterns = [
@@ -12,4 +11,5 @@ urlpatterns = [
     # path('', include(soccer_field.router.urls)),
     path('', include('dh_index.apps.user.routers.user')),
     path('', include('dh_index.apps.user.routers.register')),
+    path('', include('dh_index.apps.user.routers.user_holdings')),
 ]

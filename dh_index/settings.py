@@ -16,6 +16,7 @@ from datetime import timedelta
 
 from dotenv import load_dotenv
 from django.conf import settings
+from corsheaders.defaults import default_headers
 
 load_dotenv('.env')
 
@@ -53,6 +54,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -147,6 +149,16 @@ AUTH_USER_MODEL = "user.User"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+    'http://localhost:5173'
+]
+
+CORS_ALLOW_HEADERS = list(default_headers) + [
+    'Content-Range'
+]
+
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
