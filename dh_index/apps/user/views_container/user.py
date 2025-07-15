@@ -2,7 +2,7 @@ from dh_index.apps.user.serializers import (
     UserDetailSerializer
 )
 from dh_index.apps.user.views_container import (
-    Response, permissions, APIView, swagger_auto_schema, openapi
+    Response, permissions, APIView, swagger_auto_schema
 )
 
 
