@@ -165,6 +165,36 @@ REST_FRAMEWORK = {
     ),
 }
 
+# Cấu hình Swagger để hỗ trợ cả Basic Auth và Bearer Token
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'Basic': {
+            'type': 'basic'
+        },
+        'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header',
+            'description': 'JWT authorization header using the Bearer scheme. Example: "Bearer {token}"'
+        }
+    },
+    'USE_SESSION_AUTH': False,
+    'JSON_EDITOR': True,
+    'SUPPORTED_SUBMIT_METHODS': [
+        'get',
+        'post',
+        'put',
+        'delete',
+        'patch'
+    ],
+    'OPERATIONS_SORTER': 'alpha',
+    'TAGS_SORTER': 'alpha',
+    'DOC_EXPANSION': 'none',
+    'DEEP_LINKING': True,
+    'SHOW_EXTENSIONS': True,
+    'SHOW_COMMON_EXTENSIONS': True,
+}
+
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=int(os.environ.get('ACCESS_TOKEN_LIFETIME', 3000))),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=int(os.environ.get('REFRESH_TOKEN_LIFETIME', 7))),
@@ -192,7 +222,7 @@ SIMPLE_JWT = {
     "SLIDING_TOKEN_LIFETIME": timedelta(minutes=int(os.environ.get('ACCESS_TOKEN_LIFETIME', 30))),
     "SLIDING_TOKEN_REFRESH_LIFETIME": timedelta(days=int(os.environ.get('REFRESH_TOKEN_LIFETIME', 7))),
     "TOKEN_OBTAIN_SERIALIZER": "dh_index.apps.user.serializers.CustomTokenObtainPairSerializer",
-    "TOKEN_REFRESH_SERIALIZER": "dh_index.apps.authentication.serializers.CustomTokenRefreshSerializer",
+    "TOKEN_REFRESH_SERIALIZER": "dh_index.apps.user.serializers.CustomTokenRefreshSerializer",
     "TOKEN_VERIFY_SERIALIZER": "rest_framework_simplejwt.serializers.TokenVerifySerializer",
     "TOKEN_BLACKLIST_SERIALIZER": "rest_framework_simplejwt.serializers.TokenBlacklistSerializer",
     "SLIDING_TOKEN_OBTAIN_SERIALIZER": "rest_framework_simplejwt.serializers.TokenObtainSlidingSerializer",

@@ -7,3 +7,8 @@ class UserDetailSerializer(serializers.ModelSerializer):
         model = User
         fields = "__all__"
         extra_kwargs = {'password': {'write_only': True}, 'verify_code': {'write_only': True}}
+
+
+class UserUpdateSerializer(serializers.ModelSerializer):
+    pass
+

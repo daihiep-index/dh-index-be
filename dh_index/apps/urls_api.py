@@ -10,6 +10,6 @@ urlpatterns = [
 
     # path('', include(stadium.router.urls)),
     # path('', include(soccer_field.router.urls)),
-    # path('', include('dh_index.apps.user.routers.user')),
+    path('', include('dh_index.apps.user.routers.user')),
     path('', include('dh_index.apps.user.routers.register')),
 ]
