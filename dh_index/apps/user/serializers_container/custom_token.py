@@ -46,3 +46,4 @@ class CustomTokenRefreshSerializer(TokenRefreshSerializer):
             'access': str(refresh_token.access_token),
         }
         return data
+
