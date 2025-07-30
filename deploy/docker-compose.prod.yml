@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  dh-index-backend:
+    image: dh-index-backend:latest
+    ports:
+      - "8000:8000"
+    volumes:
+      # Mount database file để bảo toàn data
+      - /opt/dh-index-backend/data/db.sqlite3:/app/db.sqlite3
+      # Mount logs directory
+      - /opt/dh-index-backend/logs:/app/logs
+    environment:
+      - DJANGO_SETTINGS_MODULE=dh_index.settings
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/admin/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
