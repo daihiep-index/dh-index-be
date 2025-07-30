@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  dh-index-backend:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      # Mount database file để bảo toàn data
+      - ../db.sqlite3:/app/db.sqlite3
+      # Mount logs directory
+      - ../logs:/app/logs
+    environment:
+      - DJANGO_SETTINGS_MODULE=dh_index.settings
+    restart: unless-stopped
