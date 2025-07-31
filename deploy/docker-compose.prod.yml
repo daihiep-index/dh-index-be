@@ -3,15 +3,16 @@ version: '3.8'
 services:
   dh-index-backend:
     image: dh-index-backend:latest
+    pull_policy: never
     ports:
       - "8000:8000"
     volumes:
-      # Mount database file để bảo toàn data
-      - /opt/dh-index-backend/data/db.sqlite3:/app/db.sqlite3
-      # Mount logs directory
-      - /opt/dh-index-backend/logs:/app/logs
+      # Mount data directory để bảo toàn database và logs (relative to docker-compose location)
+      - ./data:/app/data
+      - ./logs:/app/logs
     environment:
       - DJANGO_SETTINGS_MODULE=dh_index.settings
+      - DATABASE_PATH=/app/data/db.sqlite3
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/admin/"]
